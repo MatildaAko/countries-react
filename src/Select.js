@@ -10,6 +10,7 @@ const Select = ({ setFilterRegion, allCountries }) => {
   regions.sort((a, b) => a === b ? 0 : a < b ? -1 : 1);
   return (
     <DropdownButton id="dropdown-basic-button" title="Filter Region" onSelect={(event) => setFilterRegion(event)}>
+      <Dropdown.Item eventKey={null}>All Regions</Dropdown.Item>
       {regions.map((region) => {
         return (
           <Dropdown.Item eventKey={region}
