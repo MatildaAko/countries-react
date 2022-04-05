@@ -1,6 +1,5 @@
 import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
-// import  from "react-bootstrap";
 
 const Select = ({ setFilterRegion, allCountries }) => {
   const regions = [];
@@ -9,7 +8,6 @@ const Select = ({ setFilterRegion, allCountries }) => {
       return !regions.includes(country.region) && regions.push(country.region);
     });
   regions.sort((a, b) => a === b ? 0 : a < b ? -1 : 1);
-  // console.log(regions)
   return (
     <DropdownButton id="dropdown-basic-button" title="Filter Region" onSelect={(event) => setFilterRegion(event)}>
       {regions.map((region) => {

@@ -6,7 +6,7 @@ const AllCountries = ({ searchTerm, allCountries, filterRegion }) => {
     <div>
       {allCountries != null &&
         allCountries.filter((country) => {
-          return filterRegion === "" ? country : country.region.includes(filterRegion) && country
+          return filterRegion === null ? country : country.region.includes(filterRegion) && country
         })
           .filter((country) => {
             return searchTerm === ""
