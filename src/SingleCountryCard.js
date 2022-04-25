@@ -1,11 +1,17 @@
 import React from "react";
+import { useTheme } from "./ThemeContext";
 
 const SingleCountryCard = ({ country, setIsSingleCountry, allCountries, handleSingleCountry }) => {
   function goBack() {
     setIsSingleCountry(false);
   }
+  const darkTheme = useTheme();
+  const themeStyles = {
+    backgroundColor: darkTheme ? "hsl(209, 23%, 22%)" : "#FFF",
+    color: darkTheme ? "#CCC" : "#333",
+  };
   return (
-    <div className="card">
+    <div className="card" style={themeStyles}>
       <button onClick={goBack}>Back</button>
       <div>
         <img src={country.flags.png} className="card-img-top" alt={`flag of ${country.name}`} />
@@ -49,7 +55,7 @@ const SingleCountryCard = ({ country, setIsSingleCountry, allCountries, handleSi
               <b>Border Countries:</b>
             </p>
             {!Array.isArray(country.borders)
-              ? country.borders.map((border) => <button onClick={() => handleSingleCountry(border)} >{border.name}</button>)
+              ? country.borders.map((border) => <button onClick={() => handleSingleCountry(border)}>{border.name}</button>)
               : country.borders.map((border) => {
                   return (
                     <button onClick={() => handleSingleCountry(allCountries.filter((country) => country.alpha3Code.includes(border))[0])}>
@@ -59,7 +65,6 @@ const SingleCountryCard = ({ country, setIsSingleCountry, allCountries, handleSi
                 })}
           </>
         )}
-
       </div>
     </div>
   );
