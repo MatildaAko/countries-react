@@ -18,22 +18,27 @@ function App() {
       setAllCountries(data);
     });
   }, [])
+  
+  
+  return (
+    <ThemeProvider>
+      <PageWrapper >
+        <Header />
+        <Search setSearchTerm={setSearchTerm} />
+        <Select allCountries={allCountries} setFilterRegion={setFilterRegion} />
+        <AllCountries allCountries={allCountries} searchTerm={searchTerm} filterRegion={filterRegion} setFilterRegion={setFilterRegion} />
+      </PageWrapper>
+    </ThemeProvider>
+  );
+}
+
+const PageWrapper = ({ children }) => {
   const darkTheme = useTheme();
   const themeStyles = {
     backgroundColor: darkTheme ? "hsl(207, 26%, 17%)" : "hsl(0, 0%, 98%)",
     color: darkTheme ? "hsl(0, 0%, 100%)" : "hsl(200, 15%, 8%)",
   };
-  
-  return (
-    <ThemeProvider>
-      <div className="App" style={themeStyles}>
-        <Header />
-        <Search setSearchTerm={setSearchTerm} />
-        <Select allCountries={allCountries} setFilterRegion={setFilterRegion} />
-        <AllCountries allCountries={allCountries} searchTerm={searchTerm} filterRegion={filterRegion} setFilterRegion={setFilterRegion} />
-      </div>
-    </ThemeProvider>
-  );
+  return <div className="App" style={themeStyles}>{children}</div>
 }
 
 export default App;
